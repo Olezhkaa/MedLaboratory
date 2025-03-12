@@ -1,0 +1,68 @@
+﻿<Page x:Class="MedLaboratory.Presentation.Pages.HistoryLoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MedLaboratory.Presentation.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="HistoryLoginPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition />
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="История посещения" Grid.Row="0" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+        <DataGrid Name="HistoryDataGrid" Grid.Row="2" Background="Transparent" VerticalAlignment="Top" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                <DataGridTextColumn Header="ID Пользователя" Binding="{Binding ID_Employee}"/>
+                <DataGridTextColumn Header="Логин" Binding="{Binding Employee.Login}"/>
+                <DataGridTextColumn Header="Пароль" Binding="{Binding Employee.Password}"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Employee.LastName}"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Employee.FirstName}"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Employee.MiddleName}"/>
+                <DataGridTextColumn Header="Роль" Binding="{Binding Employee.Role.Title}"/>
+                <DataGridTextColumn Header="IP" Binding="{Binding Employee.IP_address}"/>
+                <DataGridTextColumn Header="Последнее посещение" Binding="{Binding Login_DateTime}"/>
+                <DataGridTextColumn Header="Результат" Binding="{Binding Result}"/>
+            </DataGrid.Columns>
+            
+        </DataGrid>
+
+        <StackPanel Margin="10, 0, 10, 0" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel>
+                <TextBlock Text="Сортировка"/>
+                <StackPanel Orientation="Horizontal" Margin="0, 2, 0, 0">
+                    <ComboBox Name="SortComboBox" Width="100" Height="25" HorizontalAlignment="Center" SelectionChanged="SortComboBox_SelectionChanged">
+                        <ComboBoxItem IsSelected="true">Нет</ComboBoxItem>
+                        <ComboBoxItem>Время входа</ComboBoxItem>
+                    </ComboBox>
+                    <StackPanel Margin="5, 0, 0, 0">
+                        <RadioButton Content="По возростанию" Name="UpRadionButton" IsChecked="True" Checked="UpRadionButton_Checked"/>
+                        <RadioButton Content="По убыванию" Name="DownRadionButton" Checked="DownRadionButton_Checked"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="15, 0, 0 ,0">
+                <TextBlock>Поиск</TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="0, 2, 0 ,0">
+                    <ComboBox Name="SearchComboBox" Width="100" Height="25" Margin="0, 0 , 5, 0">
+                        <ComboBoxItem IsSelected="True">Логин</ComboBoxItem>
+                        <ComboBoxItem>Фамилия</ComboBoxItem>
+                        <ComboBoxItem>Имя</ComboBoxItem>
+                    </ComboBox>
+                    <TextBox Name="SearchTextBox" Width="150" Height="25" TextChanged="SearchTextBox_TextChanged"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="15, 0, 0 ,0">
+                <TextBlock>Фильтрация</TextBlock>
+                <ComboBox Name="FiltrComboBox" Width="150" Height="25" Margin="0, 2, 0 ,0" SelectionChanged="FiltrComboBox_SelectionChanged">
+                   
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
